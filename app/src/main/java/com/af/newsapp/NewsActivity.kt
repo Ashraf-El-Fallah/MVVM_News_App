@@ -19,12 +19,9 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = findNavController(binding.flFragment)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(binding.newsNavHostFragment.id) as NavHostFragment
+        val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)
-
-//        val navHostFragment=supportFragmentManager
-//            .findFragmentById(binding.flFragment.id) as NavHostFragment
-//        val navController=navHostFragment?.navController
-//        binding.bottomNavigationView.setupWithNavController(navController!!)
     }
 }
