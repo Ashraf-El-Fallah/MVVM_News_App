@@ -1,4 +1,4 @@
-package com.af.newsapp
+package com.af.newsapp.ui
 
 import android.R
 import android.os.Bundle
