@@ -5,9 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.af.newsapp.R
 import com.af.newsapp.adapters.NewsAdapter
 import com.af.newsapp.databinding.FragmentBreakingNewsBinding
 import com.af.newsapp.ui.NewsActivity
@@ -40,6 +43,20 @@ class BreakingNewsFragment : Fragment() {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
         initObservers()
+        setUpNavigation()
+    }
+
+    private fun setUpNavigation() {
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+
+            findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
     }
 
     private fun initObservers() {

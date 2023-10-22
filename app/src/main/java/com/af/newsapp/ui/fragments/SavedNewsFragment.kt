@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.af.newsapp.R
+import com.af.newsapp.adapters.NewsAdapter
 import com.af.newsapp.databinding.FragmentSavedNewsBinding
 import com.af.newsapp.ui.NewsActivity
 import com.af.newsapp.ui.NewsViewModel
@@ -16,6 +20,7 @@ class SavedNewsFragment : Fragment() {
 // onDestroyView.
     private val binding get() = _binding!!
     lateinit var viewModel: NewsViewModel
+    lateinit var newsAdapter: NewsAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,8 +32,31 @@ class SavedNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as NewsActivity).viewModel
 
+        viewModel = (activity as NewsActivity).viewModel
+        setupRecyclerView()
+        setUpNavigation()
+    }
+
+    private fun setUpNavigation() {
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+
+            findNavController().navigate(
+                R.id.action_savedNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
+    }
+
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        binding.rvSavedNews.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
     }
 
     override fun onDestroyView() {

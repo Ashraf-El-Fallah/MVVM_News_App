@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.af.newsapp.R
 import com.af.newsapp.adapters.NewsAdapter
@@ -33,6 +34,7 @@ class SearchNewsFragment : Fragment() {
     lateinit var viewModel: NewsViewModel
     lateinit var searchNewsAdapter: NewsAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,10 +46,24 @@ class SearchNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = (activity as NewsActivity).viewModel
         setUpRecyclerView()
         initObservers()
         handleEditText()
+        setUpNavigation()
+    }
+
+    private fun setUpNavigation() {
+        searchNewsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
     }
 
     private fun handleEditText() {
