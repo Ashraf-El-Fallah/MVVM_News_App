@@ -36,9 +36,13 @@ class BreakingNewsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
+        initObservers()
+    }
 
+    private fun initObservers() {
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -51,7 +55,7 @@ class BreakingNewsFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e("Breaking News", "An error occured $message")
+                        Log.e("Breaking News", "An error occurred $message")
                     }
                 }
 

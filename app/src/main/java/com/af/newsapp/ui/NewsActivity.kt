@@ -19,7 +19,6 @@ class NewsActivity : AppCompatActivity() {
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         addBottomNavigation()
         initViewModel()
     }
@@ -29,7 +28,7 @@ class NewsActivity : AppCompatActivity() {
         val viewModelFactory = NewsViewModelFactory(newsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
     }
-    
+
 
     private fun addBottomNavigation() {
         val navHostFragment = supportFragmentManager

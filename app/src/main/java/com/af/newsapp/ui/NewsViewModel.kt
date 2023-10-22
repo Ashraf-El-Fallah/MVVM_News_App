@@ -16,7 +16,9 @@ class NewsViewModel(
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
 
-    //philip code
+
+    val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
+    val searchNewPage = 1
 
     init {
         getBreakingNews("us")
@@ -29,13 +31,34 @@ class NewsViewModel(
         breakingNews.postValue(result)
     }
 
+    fun searchForNews(searchQuery: String) = viewModelScope.launch {
+        searchNews.postValue(Resource.Loading())
+        val response=newsRepository.searchForNews(searchQuery,searchNewPage)
+        val result=handleSearchNewsResponse(response)
+        searchNews.postValue(result)
+    }
+
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
         if (response.isSuccessful) {
+            //The code block inside the let function is executed when the response body is not null.
+            //The body() method typically contains the deserialized data from the HTTP response.
             response.body()?.let { resultResponse ->
                 return Resource.Success(resultResponse)
             }
         }
         return Resource.Error(response.message())
     }
+
+    private fun handleSearchNewsResponse(response: Response<NewsResponse>): Resource<NewsResponse> {
+        if (response.isSuccessful) {
+            //The code block inside the let function is executed when the response body is not null.
+            //The body() method typically contains the deserialized data from the HTTP response.
+            response.body()?.let { resultResponse ->
+                return Resource.Success(resultResponse)
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
 
 }

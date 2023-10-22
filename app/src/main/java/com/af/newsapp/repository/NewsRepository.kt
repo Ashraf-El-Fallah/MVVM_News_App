@@ -4,6 +4,7 @@ import com.af.newsapp.api.RetrofitInstance
 import com.af.newsapp.db.ArticleDatabase
 import com.af.newsapp.models.NewsResponse
 import retrofit2.Response
+import retrofit2.http.Query
 
 class NewsRepository(
     val db: ArticleDatabase
@@ -13,4 +14,10 @@ class NewsRepository(
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int): Response<NewsResponse> {
         return RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
     }
+
+    suspend fun searchForNews(searchQuery: String, pageNumber: Int): Response<NewsResponse> {
+        return RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+    }
+
+
 }
