@@ -1,5 +1,6 @@
 package com.af.newsapp.ui.fragments
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
@@ -14,16 +15,17 @@ import com.af.newsapp.databinding.FragmentArticleBinding
 import com.af.newsapp.models.Article
 import com.af.newsapp.ui.NewsActivity
 import com.af.newsapp.ui.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class ArticleFragment : Fragment() {
-
     private var _binding: FragmentArticleBinding? = null
 
-    // This property is only valid between onCreateView and
-// onDestroyView.
+    // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
     lateinit var viewModel: NewsViewModel
-    val args: ArticleFragmentArgs by navArgs()
+    private val args: ArticleFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,15 +38,23 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel = (activity as NewsActivity).viewModel
         openWebPage()
+        saveNews()
+    }
+    private fun getArticle(): Article? = args.article
+    private fun saveNews() {
+        binding.fab.setOnClickListener {
+            viewModel.saveArticle(getArticle())
+            Snackbar.make(requireView(), "Article saved successfully", Snackbar.LENGTH_LONG).show()
+        }
     }
 
-    private fun openWebPage(){
-        val article = args.article
+    private fun openWebPage() {
         binding.webView.apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            getArticle()?.let { loadUrl(it.url) }
         }
     }
 
