@@ -16,10 +16,12 @@ class NewsViewModel(
 
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
 
 
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
-    val searchNewPage = 1
+    var searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
 
     init {
         getBreakingNews("us")
@@ -34,7 +36,7 @@ class NewsViewModel(
 
     fun searchForNews(searchQuery: String) = viewModelScope.launch {
         searchNews.postValue(Resource.Loading())
-        val response = newsRepository.searchForNews(searchQuery, searchNewPage)
+        val response = newsRepository.searchForNews(searchQuery, searchNewsPage)
         val result = handleSearchNewsResponse(response)
         searchNews.postValue(result)
     }
@@ -55,7 +57,17 @@ class NewsViewModel(
             //The code block inside the let function is executed when the response body is not null.
             //The body() method typically contains the deserialized data from the HTTP response.
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                //handle pagination
+
+                breakingNewsPage++
+                if (breakingNewsResponse == null) {
+                    breakingNewsResponse = resultResponse
+                } else {
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(breakingNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
@@ -66,11 +78,19 @@ class NewsViewModel(
             //The code block inside the let function is executed when the response body is not null.
             //The body() method typically contains the deserialized data from the HTTP response.
             response.body()?.let { resultResponse ->
-                return Resource.Success(resultResponse)
+                //handle pagination
+
+                searchNewsPage++
+                if (searchNewsResponse == null) {
+                    searchNewsResponse = resultResponse
+                } else {
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = resultResponse.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse ?: resultResponse)
             }
         }
         return Resource.Error(response.message())
     }
-
-
 }

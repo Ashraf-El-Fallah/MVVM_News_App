@@ -47,14 +47,14 @@ class ArticleFragment : Fragment() {
     private fun saveNews() {
         binding.fab.setOnClickListener {
             viewModel.saveArticle(getArticle())
-            Snackbar.make(requireView(), "Article saved successfully", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireView(), "Article saved successfully", Snackbar.LENGTH_SHORT).show()
         }
     }
 
     private fun openWebPage() {
         binding.webView.apply {
             webViewClient = WebViewClient()
-            getArticle()?.let { loadUrl(it.url) }
+            getArticle()?.let { loadUrl(it.url.toString()) }
         }
     }
 
