@@ -1,11 +1,13 @@
 package com.af.newsapp.ui.fragments
 
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -79,7 +81,11 @@ class BreakingNewsFragment : Fragment() {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Log.e("Breaking News", "An error occurred $message")
+                        Toast.makeText(
+                            activity,
+                            "$message",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
@@ -108,6 +114,7 @@ class BreakingNewsFragment : Fragment() {
         binding.paginationProgressBar.visibility = View.VISIBLE
         isLoading = true
     }
+
 
     //handle pagination
 

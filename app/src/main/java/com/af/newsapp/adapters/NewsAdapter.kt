@@ -17,20 +17,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         onItemClickListener = listener
     }
 
-    //i don't know why we use this until know
-    fun addArticle(article: Article, position: Int) {
-        val curList = differ.currentList.toMutableList()
-        curList.add(position, article)
-        differ.submitList(curList)
-    }
-
-    //i don't know why we use this until know
-    fun deleteArticle(article: Article) {
-        val curList = differ.currentList.toMutableList()
-        curList.remove(article)
-        differ.submitList(curList)
-    }
-
     inner class ArticleViewHolder(
         private val binding: ItemArticlePreviewBinding,
         private val context: Context

@@ -25,7 +25,7 @@ class NewsActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelFactory = NewsViewModelFactory(newsRepository)
+        val viewModelFactory = NewsViewModelFactory(application, newsRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
     }
 

@@ -15,9 +15,11 @@ class NewsRepository(
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int): Response<NewsResponse> {
         return RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
     }
+
     suspend fun searchForNews(searchQuery: String, pageNumber: Int): Response<NewsResponse> {
         return RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
     }
+
     suspend fun upsert(article: Article?) = db.getArticleDao().upsert(article)
     fun getSavedNews() = db.getArticleDao().getAllArticles()
     suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)

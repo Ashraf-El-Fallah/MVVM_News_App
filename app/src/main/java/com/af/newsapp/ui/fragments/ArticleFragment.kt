@@ -43,6 +43,7 @@ class ArticleFragment : Fragment() {
         openWebPage()
         saveNews()
     }
+
     private fun getArticle(): Article? = args.article
     private fun saveNews() {
         binding.fab.setOnClickListener {
