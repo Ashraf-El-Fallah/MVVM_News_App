@@ -13,19 +13,19 @@ The News App is an uncomplicated application designed to retrieve the latest new
 
 
 # Technologies
-Retrofit: Used for efficient and flexible communication with remote APIs, allowing seamless retrieval of news data.
+Retrofit
 
-Room: Employed as a local database solution for storing and managing app data, ensuring offline access and improved performance.
+Room
 
-Navigation Component: Facilitates smooth and structured user navigation within the app, enhancing the overall user experience.
+Navigation Component
 
-LiveData: Integrated for real-time data updates, enabling the app to react dynamically to changes in the data source.
+LiveData
 
-View Binding: Simplifies the process of interacting with views in the UI, reducing the risk of runtime errors associated with using findViewById.
+View Binding
 
-MVVM (Model-View-ViewModel) Architecture: A robust architectural pattern that separates concerns and promotes code maintainability and scalability.
+MVVM (Model-View-ViewModel) Architecture
 
-Coroutines: Utilized for asynchronous programming, simplifying the handling of background tasks and promoting a responsive user interface.
+Coroutines
 
 # Architecture
 
