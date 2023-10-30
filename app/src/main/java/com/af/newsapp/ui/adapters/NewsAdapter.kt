@@ -1,4 +1,4 @@
-package com.af.newsapp.adapters
+package com.af.newsapp.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.af.newsapp.databinding.ItemArticlePreviewBinding
-import com.af.newsapp.models.Article
+import com.af.newsapp.data.models.Article
 import com.bumptech.glide.Glide
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {

@@ -12,10 +12,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.af.newsapp.NewsApplication
-import com.af.newsapp.models.Article
-import com.af.newsapp.models.NewsResponse
-import com.af.newsapp.network.ConnectivityObserver
-import com.af.newsapp.network.NetworkConnectivityObserver
+import com.af.newsapp.data.models.Article
+import com.af.newsapp.data.models.NewsResponse
+import com.af.newsapp.data.network.ConnectivityObserver
+import com.af.newsapp.data.network.NetworkConnectivityObserver
 import com.af.newsapp.repository.NewsRepository
 import com.af.newsapp.util.Resource
 import kotlinx.coroutines.MainScope
@@ -73,7 +73,6 @@ class NewsViewModel(
             //The body() method typically contains the deserialized data from the HTTP response.
             response.body()?.let { resultResponse ->
                 //handle pagination
-
                 breakingNewsPage++
                 if (breakingNewsResponse == null) {
                     breakingNewsResponse = resultResponse
@@ -110,6 +109,7 @@ class NewsViewModel(
         return Resource.Error(response.message())
     }
 
+    //for no internet handling
     private suspend fun safeSearchNewsCall(searchQuery: String) {
         newSearchQuery = searchQuery
         connectivityObserver = NetworkConnectivityObserver(context)

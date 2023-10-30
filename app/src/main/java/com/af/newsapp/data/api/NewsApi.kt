@@ -1,6 +1,6 @@
-package com.af.newsapp.api
+package com.af.newsapp.data.api
 
-import com.af.newsapp.models.NewsResponse
+import com.af.newsapp.data.models.NewsResponse
 import com.af.newsapp.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET

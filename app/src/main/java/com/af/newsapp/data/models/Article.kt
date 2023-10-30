@@ -1,4 +1,4 @@
-package com.af.newsapp.models
+package com.af.newsapp.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -21,6 +21,7 @@ data class Article(
     val url: String?,
     val urlToImage: String?
 ) : Serializable {
+
     override fun hashCode(): Int {
         var result = id.hashCode()
         if (url.isNullOrEmpty()) {

@@ -1,9 +1,9 @@
 package com.af.newsapp.repository
 
-import com.af.newsapp.api.RetrofitInstance
-import com.af.newsapp.db.ArticleDatabase
-import com.af.newsapp.models.Article
-import com.af.newsapp.models.NewsResponse
+import com.af.newsapp.data.api.RetrofitInstance
+import com.af.newsapp.data.db.ArticleDatabase
+import com.af.newsapp.data.models.Article
+import com.af.newsapp.data.models.NewsResponse
 import retrofit2.Response
 import retrofit2.http.Query
 

@@ -1,12 +1,12 @@
-package com.af.newsapp.db
+package com.af.newsapp.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.af.newsapp.models.Article
-import com.af.newsapp.models.Source
+import com.af.newsapp.data.models.Article
+import com.af.newsapp.data.models.Source
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 

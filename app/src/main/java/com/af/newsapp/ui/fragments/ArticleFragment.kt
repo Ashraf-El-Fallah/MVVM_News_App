@@ -12,7 +12,7 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.af.newsapp.databinding.FragmentArticleBinding
-import com.af.newsapp.models.Article
+import com.af.newsapp.data.models.Article
 import com.af.newsapp.ui.NewsActivity
 import com.af.newsapp.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar

@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.af.newsapp.databinding.ActivityNewsBinding
-import com.af.newsapp.db.ArticleDatabase
+import com.af.newsapp.data.db.ArticleDatabase
 import com.af.newsapp.repository.NewsRepository
 
 

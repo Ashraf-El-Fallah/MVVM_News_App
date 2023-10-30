@@ -1,4 +1,4 @@
-package com.af.newsapp.network
+package com.af.newsapp.data.network
 
 import kotlinx.coroutines.flow.Flow
 

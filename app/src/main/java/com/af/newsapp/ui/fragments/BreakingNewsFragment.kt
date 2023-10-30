@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.af.newsapp.R
-import com.af.newsapp.adapters.NewsAdapter
+import com.af.newsapp.ui.adapters.NewsAdapter
 import com.af.newsapp.databinding.FragmentBreakingNewsBinding
 import com.af.newsapp.ui.NewsActivity
 import com.af.newsapp.ui.NewsViewModel

@@ -1,6 +1,6 @@
-package com.af.newsapp.models
+package com.af.newsapp.data.models
 
-import com.af.newsapp.models.Article
+import com.af.newsapp.data.models.Article
 
 data class NewsResponse(
     val articles: MutableList<Article>,

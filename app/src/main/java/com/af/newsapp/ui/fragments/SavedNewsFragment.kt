@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.af.newsapp.R
-import com.af.newsapp.adapters.NewsAdapter
+import com.af.newsapp.ui.adapters.NewsAdapter
 import com.af.newsapp.databinding.FragmentSavedNewsBinding
 import com.af.newsapp.ui.NewsActivity
 import com.af.newsapp.ui.NewsViewModel
